@@ -1,10 +1,14 @@
 job.type: train
 
+dataset.name: wnrr
+
 train:
+  type: 1vsAll
+  batch_size: 512
   optimizer.default:
     type: Adagrad
     args:
-      lr: 0.2
+      lr: 0.3
   lr_scheduler: ReduceLROnPlateau
   lr_scheduler_args:
     mode: max
@@ -12,7 +16,7 @@ train:
 
 model: complex
 lookup_embedder:
-  dim: 100
+  dim: 128
   regularize_weight: 0.8e-7
   initialize: normal_
   initialize_args:
