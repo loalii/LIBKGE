@@ -13,6 +13,7 @@ train:
   lr_scheduler_args:
     mode: max
     patience: 4
+  max_epochs: 500
 
 model: complex
 lookup_embedder:
