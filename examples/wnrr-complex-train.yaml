@@ -18,10 +18,10 @@ train:
 model: complex
 lookup_embedder:
   dim: 128
-  dropout: 0.05
-  regularize_weight: 1.45e-18
+  dropout: 0.4
+  regularize_weight: 1.45e-15
   initialize: uniform_
   initialize_args:
-    normal_:
-      mean: 0.0
-      std: 0.3
+    uniform_:
+      a: -0.31
+      b: 0.31
