@@ -12,15 +12,16 @@ train:
   lr_scheduler: ReduceLROnPlateau
   lr_scheduler_args:
     mode: max
-    patience: 4
+    patience: 7
   max_epochs: 500
 
 model: complex
 lookup_embedder:
   dim: 128
-  regularize_weight: 0.8e-7
-  initialize: normal_
+  dropout: 0.05
+  regularize_weight: 1.45e-18
+  initialize: uniform_
   initialize_args:
     normal_:
       mean: 0.0
-      std: 0.1
+      std: 0.3
