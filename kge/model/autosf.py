@@ -39,7 +39,7 @@ class AutoSFScorer(RelationalScorer):
                 jj = idx % self.K   # column: o
                 A_ij = A_np[idx]
                 # h^T g_K(A,r) t
-                score += np.sign(A_ij) * ((s_emb_chunk[ii] * p_emb_chunk[abs(A_ij)-1]).mm(o_emb_chunk[jj].tranpose(0,1)))
+                score += np.sign(A_ij) * ((s_emb_chunk[ii] * p_emb_chunk[abs(A_ij)-1]).mm(o_emb_chunk[jj].transpose(0,1)))
 
         elif combine == "_po":
             score = torch.zeros(n,n)
