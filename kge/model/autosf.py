@@ -42,7 +42,7 @@ class AutoSFScorer(RelationalScorer):
 
         elif combine == "_po":
             m = s_emb.size(0)
-            score = torch.zeros(n,m).to('cuda:0')
+            score = torch.zeros(n,m).to(self.config.get("job.device"))
             for idx in A_np_notzero:
                 ii = idx // self.K  # row: s
                 jj = idx % self.K   # column: o
