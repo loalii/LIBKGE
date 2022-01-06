@@ -5,7 +5,7 @@ autosf:
   relation_embedder:
     dropout: 0.3112283826796357
     regularize_weight: 4.192985917075565e-10
-  A: [1,0,-3,0, 0,2,0,-4, 3,0,1,0, 0,4,0,2]
+  A: [1,0,3,0, 0,2,0,4, -3,0,1,0, 0,-4,0,2]
   K: 4
 dataset:
   name: wnrr

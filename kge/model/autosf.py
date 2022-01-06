@@ -20,24 +20,21 @@ class AutoSFScorer(RelationalScorer):
         A_np = np.array(self.A)
         A_np_notzero = np.flatnonzero(A_np)
 
-        print("autosf start")
         if combine == "spo":
             score = torch.zeros(n)
             for idx in A_np_notzero:
                 ii = idx // self.K  # row: s
                 jj = idx % self.K   # column: o
                 A_ij = A_np[idx]
-                # h^T g_K(A,r) t
                 score += np.sign(A_ij) * (s_emb_chunk[ii] * p_emb_chunk[abs(A_ij)-1] * o_emb_chunk[jj]).sum(dim=1)
 
         elif combine == "sp_":
             m = o_emb.size(0)
-            score = torch.zeros(n,m).to('cuda:0')
+            score = torch.zeros(n,m).to(self.config.get("job.device"))
             for idx in A_np_notzero:
                 ii = idx // self.K  # row: s
                 jj = idx % self.K   # column: o
                 A_ij = A_np[idx]
-                # h^T g_K(A,r) t
                 score += np.sign(A_ij) * ((s_emb_chunk[ii] * p_emb_chunk[abs(A_ij)-1]).mm(o_emb_chunk[jj].transpose(0,1)))
 
         elif combine == "_po":
@@ -47,8 +44,7 @@ class AutoSFScorer(RelationalScorer):
                 ii = idx // self.K  # row: s
                 jj = idx % self.K   # column: o
                 A_ij = A_np[idx]
-                # h^T g_K(A,r) t
-                score += np.sign(A_ij) * ((o_emb_chunk[jj] * p_emb_chunk[abs(A_ij)-1]).mm(s_emb_chunk[jj].transpose(0,1)))
+                score += np.sign(A_ij) * ((o_emb_chunk[jj] * p_emb_chunk[abs(A_ij)-1]).mm(s_emb_chunk[ii].transpose(0,1)))
 
         else:
             return super().score_emb(s_emb, p_emb, o_emb, combine)
