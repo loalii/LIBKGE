@@ -140,6 +140,8 @@ class EntityRankingJob(EvaluationJob):
 
         # let's go
         epoch_time = -time.time()
+        
+        ######## Li's TODO Error happens in the iteration.
         for batch_number, batch_coords in enumerate(self.loader):
             # create initial batch trace (yet incomplete)
             self.current_trace["batch"] = dict(
