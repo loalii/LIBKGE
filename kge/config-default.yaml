@@ -513,8 +513,8 @@ entity_ranking:
 
     # Tie detection tolerances. These two values determine when scores are close enough to be counted as ties;
     # see torch.isclose for details.
-    atol: 1e-05
-    rtol: 1e-04
+    atol: 1e-04
+    rtol: 1e-03
 
     # Only warn (don't abort) if ties are not in detection tolerance.
     warn_only: true

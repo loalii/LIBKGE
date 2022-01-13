@@ -1,0 +1,19 @@
+job.type: search
+search.type: sf
+
+dataset.name: wnrr
+model: autosf
+valid.metric: mean_reciprocal_rank_filtered
+
+###
+sf_search:
+  num_trials: 30
+  num_sobol_trials: 10  # remaining trials are Bayesian
+  parameters:
+    K: 4
+    - name: train.batch_size
+      type: choice
+      values: [256, 512, 1024]
+    
+
+###
