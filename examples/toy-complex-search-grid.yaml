@@ -11,3 +11,4 @@ grid_search.parameters:
 
     # or nested
     lookup_embedder: { dim: [ 10, 20 ] }
+    lookup_embedder.dropout: [ 0.2, 0.4]

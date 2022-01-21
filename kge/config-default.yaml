@@ -618,6 +618,27 @@ ax_search:
   parameter_constraints: []
 
 
+sf_search:
+  class_name: SFSearchJob
+  
+  run: True
+
+  num_trials: 10
+
+  structure_genarator: random
+
+  prob: 0.2
+
+  K: 4
+
+  parameters: 
+    +++: +++
+
+
+
+
+
+
 ## USER PARAMETERS #####################################################################
 
 # These parameters are not used by the kge framework itself. It can be used to
